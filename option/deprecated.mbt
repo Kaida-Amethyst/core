@@ -51,7 +51,7 @@ pub fn[T] Option::or(self : T?, default : T) -> T {
 
 ///|
 #deprecated("use unwrap_or_else instead")
-pub fn[T] Option::or_else(self : T?, default : () -> T) -> T {
+pub fn[T] Option::or_else(self : T?, default : () -> T raise?) -> T raise? {
   match self {
     None => default()
     Some(t) => t

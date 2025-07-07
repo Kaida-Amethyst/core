@@ -170,7 +170,7 @@ test "or" {
 ///   let y = x.or_else(() => { 0 })
 ///   assert_eq(y, 6)
 /// ```
-pub fn[T, E] or_else(self : Result[T, E], default : () -> T) -> T {
+pub fn[T, E] or_else(self : Result[T, E], default : () -> T raise?) -> T raise? {
   match self {
     Ok(value) => value
     Err(_) => default()
