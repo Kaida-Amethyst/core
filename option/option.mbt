@@ -80,7 +80,11 @@ test "map_or" {
 ///   let a = Some(5)
 ///   assert_eq(a.map_or_else(() => 3, x => x * 2), 10)
 /// ```
-pub fn[T, U] map_or_else(self : T?, default : () -> U, f : (T) -> U) -> U {
+pub fn[T, U] map_or_else(
+  self : T?,
+  default : () -> U raise?,
+  f : (T) -> U raise?
+) -> U raise? {
   match self {
     None => default()
     Some(x) => f(x)
@@ -212,7 +216,10 @@ test "unwrap_or" {
 /// Return the contained `Some` value or the provided default.
 ///
 /// Default is lazily evaluated
-pub fn[T] Option::unwrap_or_else(self : T?, default : () -> T) -> T {
+pub fn[T] Option::unwrap_or_else(
+  self : T?,
+  default : () -> T raise?
+) -> T raise? {
   match self {
     None => default()
     Some(t) => t
